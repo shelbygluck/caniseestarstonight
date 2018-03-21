@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import store from './store' // imported for you already
 
 class Counter extends React.Component {
   constructor () {
