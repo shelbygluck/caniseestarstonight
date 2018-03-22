@@ -17,13 +17,6 @@ body {
   flex-direction: column;
 }
 
-#navbar {
-  flex-grow: 1;
-  max-height: 10%;
-  min-height: 40px;
-  color: gray;
-}
-
 #counter {
   display: flex;
   flex-direction: column;
