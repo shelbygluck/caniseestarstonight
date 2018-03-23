@@ -7,7 +7,7 @@ import {createStore} from 'redux'
 //  - reducer
 
 const initialState = {
-  // what should initialState.count be?
+  // what should be on our initial state?
 }
 
 const reducer = (state = initialState, action) => {
