@@ -1,20 +1,27 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import store from './store' // imported for you already
+import store, {increment} from './store' // imported for you already
 
 class Counter extends React.Component {
   constructor () {
     super()
-    this.state = {
-      count: 0
-    }
-    this.increment = this.increment.bind(this)
+    this.state = store.getState();
+    this.clickHandler = this.clickHandler.bind(this)
   }
 
-  increment () {
-    this.setState({
-      count: this.state.count + 1
+  componentDidMount() {
+    this.functionToCallWhenWeWantToUnsubscribe = store.subscribe(() => {
+      this.setState(store.getState())
     })
+  }
+
+  componentWillUnmount() {
+    this.functionToCallWhenWeWantToUnsubscribe();
+  }
+
+  clickHandler () {
+    const action = increment();
+    store.dispatch(action)
   }
 
   render () {
@@ -22,7 +29,7 @@ class Counter extends React.Component {
       <div id='container'>
         <div id='counter'>
           <h1>{this.state.count}</h1>
-          <button onClick={this.increment}>Increment</button>
+          <button onClick={(this.clickHandler)}>Increment</button>
         </div>
       </div>
     )
