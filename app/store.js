@@ -1,33 +1,22 @@
-import {createStore, applyMiddleware} from 'redux'
-import reduxLogger from 'redux-logger';
+import {createStore} from 'redux'
 
-// Type constants
-const INCREMENT = 'INCREMENT';
-
-// Action creators
-export const increment = () => {
-  return {
-    type: INCREMENT
-  }
-}
-
-// reducer
+// Still need:
+//  - action type
+//  - action creator
+//  - initial state
+//  - reducer
 
 const initialState = {
-  count: 0
+  // what should be on our initial state?
 }
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case INCREMENT:
-      return {
-        count: state.count + 1
-      }
     default:
       return state
   }
 }
 
-const store = createStore(reducer, applyMiddleware(reduxLogger))
+const store = createStore(reducer)
 
 export default store
