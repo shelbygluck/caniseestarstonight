@@ -1,18 +1,25 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import Axios from 'axios'
 
 class Main extends React.Component {
   constructor () {
     super()
     this.state = {
-      count: 0
+      zip: 10004,
+      apiKey: 'LtaVZV9fRcYsvz1uRBGlIFhX2hFMrqNQ'
     }
-    // this.initalReq = this.initialReq.bind(this)
+    this.initialReq = this.initialReq.bind(this)
   }
 
-  // async initialReq () {
-  //   // await
-  // }
+  async initialReq () {
+    const locationKey = await Axios.get(`http://dataservice.accuweather.com/locations/v1/search?q=10004&apikey=LtaVZV9fRcYsvz1uRBGlIFhX2hFMrqNQ`)
+    // const data = locationKey[0]['Key']
+    console.log(locationKey.data)
+  }
+
+
+
 
   render () {
     return (
@@ -23,9 +30,7 @@ class Main extends React.Component {
         <form id="form1">
          zip code: <input type="text" name="zip"/><br></br>
         </form>
-        <button 
-        // onClick={this.initialReq(zip)}
-         form="form1">submit</button>
+        <button onClick={() => this.initialReq()} form="form1">submit</button>
         </div>
       </div>
     )
