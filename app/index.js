@@ -26,16 +26,32 @@ class Main extends React.Component {
       <div id="app">
         <div className='container'>
           <div className="middleColumn">
-            <h4>can i see stars tonight?</h4>
-            <form id="form1">
-            zip code: <input type="text" name="zip"/><br></br>
-            </form><br/>
-            <button onClick={() => this.initialReq()} form="form1">submit</button>
+            <h2>CAN I SEE STARS TONIGHT?</h2>
+            <div className="formAndButton">
+              <form id="form1">
+              ZIP CODE: <input type="text" name="zip"/><br></br>
+              </form><br/>
+              <button onClick={() => this.initialReq()} form="form1">FIND OUT</button>
+            </div>
           </div>
         </div>
-        <div className='container2'></div>
-        <div className='container'></div>
-        <div className='container2'></div>
+        <div className='container2'>
+        </div>
+        <div className='container'>
+          <h4 id="noVisAnchor">NO VISIBILITY</h4>
+        </div>
+        <div className='container2'>
+          <h4 id="lowVisAnchor">LOW VISIBILITY</h4>
+        </div>
+        <div className='container'>
+          <h4 id="medVisAnchor">MEDIUM VISIBILITY</h4>
+        </div>
+        <div className='container2'>
+          <h4 id="highVisAnchor">HIGH VISIBILITY</h4>
+        </div>
+        <div className='container'>
+          <h4 id="superVisAnchor">SUPER VISIBILITY</h4>
+        </div>
       </div>
     )
   }
