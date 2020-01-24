@@ -23,16 +23,19 @@ class Main extends React.Component {
 
   render () {
     return (
-      <div id='container'>
-        <div className="whitespace"></div>
-        <div className="middleColumn">
-          <h4>can i see stars tonight?</h4>
-          <form id="form1">
-          zip code: <input type="text" name="zip"/><br></br>
-          </form><br/>
-          <button onClick={() => this.initialReq()} form="form1">submit</button>
+      <div id="app">
+        <div className='container'>
+          <div className="middleColumn">
+            <h4>can i see stars tonight?</h4>
+            <form id="form1">
+            zip code: <input type="text" name="zip"/><br></br>
+            </form><br/>
+            <button onClick={() => this.initialReq()} form="form1">submit</button>
+          </div>
         </div>
-        <div className="whitespace"></div>
+        <div className='container2'></div>
+        <div className='container'></div>
+        <div className='container2'></div>
       </div>
     )
   }
