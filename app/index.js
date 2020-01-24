@@ -1,28 +1,31 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import store from './store' // imported for you already
 
-class Counter extends React.Component {
+class Main extends React.Component {
   constructor () {
     super()
     this.state = {
       count: 0
     }
-    this.increment = this.increment.bind(this)
+    // this.initalReq = this.initialReq.bind(this)
   }
 
-  increment () {
-    this.setState({
-      count: this.state.count + 1
-    })
-  }
+  // async initialReq () {
+  //   // await
+  // }
 
   render () {
     return (
       <div id='container'>
+        <h4>can i see stars tonight?</h4>
         <div id='counter'>
-          <h1>{this.state.count}</h1>
-          <button onClick={this.increment}>Increment</button>
+
+        <form id="form1">
+         zip code: <input type="text" name="zip"/><br></br>
+        </form>
+        <button 
+        // onClick={this.initialReq(zip)}
+         form="form1">submit</button>
         </div>
       </div>
     )
@@ -30,6 +33,6 @@ class Counter extends React.Component {
 }
 
 ReactDOM.render(
-  <Counter />,
+  <Main />,
   document.getElementById('app')
 )
