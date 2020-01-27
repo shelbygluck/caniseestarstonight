@@ -27,9 +27,9 @@ class Main extends React.Component {
             <h2>CAN I SEE STARS TONIGHT?</h2>
             <div className="formAndButton">
               <form id="form1">
-              ZIP CODE: <input type="text" name="zip" onChange={this.handleChange} /><br></br>
+                   ZIP CODE: <input type="text" name="zip" onChange={this.handleChange} /><br></br>
               </form><br/>
-              <button onClick={() => this.props.getLocationKey(this.state.zipCode)}>FIND OUT</button>
+              <p onClick={() => this.props.getLocationKey(this.state.zipCode)}>▷</p>
             </div>
           </div>
         </div>
