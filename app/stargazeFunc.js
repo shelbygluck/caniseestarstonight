@@ -39,15 +39,15 @@ const getMoonPhase = (year, month, day) => {
     // 7 => Waning Crescent Moon
     
     if (howFarIntoPhase === 4) { //convert to usable point system for stargaze index
-        return 0
+        return [0, 'no moonlight']
     }  else if (howFarIntoPhase === 3 || howFarIntoPhase === 5) {
-        return 10
+        return [10, 'low moonlight']
     } else if (howFarIntoPhase === 2 || howFarIntoPhase === 6) {
-        return 20
+        return [20, 'some moonlight']
     } else if (howFarIntoPhase === 1 || howFarIntoPhase === 7) {
-        return 30
+        return [30, 'strong moonlight']
     } else {
-        return 40
+        return [40, 'full moonlight']
     }
 }
 
@@ -56,26 +56,44 @@ export const getStargazeIndex = (cloudIndex, hasPrecipitation) => {
     const month = dateObj.getUTCMonth() + 1
     const day = dateObj.getUTCDate()
     const year = dateObj.getUTCFullYear()
-    const moonIndex = getMoonPhase(year, month, day)
+    const moonClip = getMoonPhase(year, month, day)
 
-    let precipIndex = 0
+    let precipClip = [0, 'no impact from precipitation']
     if (hasPrecipitation) {
-        precipIndex = 20
+        precipClip = [20, 'impact from precipitation']
     }
 
-    let total = cloudIndex  + precipIndex + moonIndex
-    
-    if (total < 32) {
-        return 'no'
-    } else if (total < 64) {
-        return 'low'
-    } else if (total < 96) {
-        return 'medium'
-    } else if (total < 128) {
-        return 'high'
-    } else if (total < 161) {
-        return 'super'
+    let total = cloudIndex + precipClip[0] + moonClip[0]
+    let responseObj = {
+        precipClip: precipClip[1],
+        moonClip: moonClip[1],
+    }
+
+    if (cloudIndex < 25) {
+        responseObj['cloudClip'] = 'zero cloud cover'
+    } else if (cloudIndex < 50) {
+        responseObj['cloudClip'] = 'some cloud cover'
     } else {
-        return 'low'
+        responseObj['cloudClip'] = 'heavy cloud cover'
+    }
+
+    if (total < 32) {
+        responseObj['keyword'] = 'super'
+        return responseObj
+    } else if (total < 64) {
+        responseObj['keyword'] = 'high'
+        return responseObj
+    } else if (total < 96) {
+        responseObj['keyword'] = 'medium'
+        return responseObj
+    } else if (total < 128) {
+        responseObj['keyword'] = 'low'
+        return responseObj
+    } else if (total < 161) {
+        responseObj['keyword'] = 'no'
+        return responseObj
+    } else {
+        responseObj['keyword'] = 'low'
+        return responseObj
     }
 }

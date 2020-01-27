@@ -10,17 +10,19 @@ const addData = (locationKey, finalVis) => ({type: ADDED_DATA, locationKey, fina
 
 const initialState = {
   locationKey: '',
-  finalVis: '',
+  finalVis: {},
 }
 
 export const fetchLocationKey = (zipCode) => async dispatch => {
     try {
-        const response = await Axios.get(`https://dataservice.accuweather.com/locations/v1/search?q=${zipCode}&apikey=LtaVZV9fRcYsvz1uRBGlIFhX2hFMrqNQ`)
-        const locationKey = response.data[0]['Key']
+       const response = await Axios.get(`https://dataservice.accuweather.com/locations/v1/search?q=${zipCode}&apikey=LtaVZV9fRcYsvz1uRBGlIFhX2hFMrqNQ`)
+       const locationKey = response.data[0]['Key']
        const secondResponse = await Axios.get(`http://dataservice.accuweather.com/forecasts/v1/daily/1day/${locationKey}?apikey=LtaVZV9fRcYsvz1uRBGlIFhX2hFMrqNQ&details=true`)
        const cloudIndex = secondResponse.data['DailyForecasts'][0]['Night']['CloudCover']
        const hasPrecipitation = secondResponse.data['DailyForecasts'][0]['Night']['HasPrecipitation']
+       console.log(cloudIndex)
        const finalVis = getStargazeIndex(cloudIndex, hasPrecipitation)
+       console.log(finalVis)
        return dispatch(addData(locationKey, finalVis))
     } catch(error) {
         console.error(error)

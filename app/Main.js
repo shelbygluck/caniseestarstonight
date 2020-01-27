@@ -19,14 +19,19 @@ class Main extends React.Component {
   }
 
   scrollToVis() {
-    const element = document.getElementById(`${this.props.finalVis}`);
-    element.scrollIntoView({behavior: "smooth", block: "center", inline: "center"})
+    // const lineBreak = document.createElement("br")
+    // const description = document.createTextNode('description example')
+    console.log(this.props)
+    const visSection = document.getElementById(`${this.props.finalVis.keyword}`);
+    // visSection.appendChild(lineBreak)
+    // visSection.appendChild(description)
+    visSection.scrollIntoView({behavior: "smooth", block: "center", inline: "center"})
   }
 
   render () {
     return (
       <div id="main">
-         {this.props.finalVis != '' ? this.scrollToVis() : console.log('empty')}
+         {this.props.finalVis.keyword ? this.scrollToVis() : console.log('empty')}
         <div className='container'>
           <div className="middleColumn">
             <h2>CAN I SEE STARS TONIGHT?</h2>
