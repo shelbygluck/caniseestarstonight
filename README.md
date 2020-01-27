@@ -1,10 +1,8 @@
-## ☆caniseestarstonight☆ is a user-friendly, single-purpose service to check relevant weather conditions in your area and let you know... you guessed it, if you can see stars that night! ☆
+## ☆caniseestarstonight☆ is a user-friendly, single-purpose service to check relevant stargazing conditions by area
 
-☆caniseestarstonight☆ was built by Shelby Gluck, a software engineering student as part of the immersive Grace Hopper Program at Fullstack Academy of Code, in New York City
+☆caniseestarstonight☆ was built by Shelby Gluck, a software engineering student as part of the immersive Grace Hopper Program at Fullstack Academy of Code, in New York City. The program takes in a user-entered zipcode, analyzes public API data sourced from AccuWeather.com, determines the current lunar phase, and calculates overall visibility of stars for that night.
 
 💻 Technologies used: Node.js, React, Redux, HTML, CSS, Heroku
-
-Public API data sourced from AccuWeather.com
 
 ```
 🔐 Getting Started
