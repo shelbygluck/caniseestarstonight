@@ -6,7 +6,8 @@
   "author": "",
   "description": "",
   "scripts": {
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server",
+    "web": "webpack-dev-server"
   },
   "dependencies": {
     "axios": "^0.19.2",
