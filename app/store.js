@@ -2,24 +2,26 @@ import {createStore, applyMiddleware} from 'redux'
 import thunkMiddleware from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import Axios from 'axios'
-import lune from 'lune'
-const GOT_LOCATION_KEY = 'GOT_LOCATION_KEY'
+import {getStargazeIndex} from './stargazeFunc.js'
 
-const gotLocationKey = (locationKey) => ({type: GOT_LOCATION_KEY, locationKey})
+const ADDED_DATA = 'ADDED_DATA'
+
+const addData = (locationKey, finalVis) => ({type: ADDED_DATA, locationKey, finalVis})
 
 const initialState = {
   locationKey: '',
-  stargazeIndex: 0
+  finalVis: '',
 }
 
 export const fetchLocationKey = (zipCode) => async dispatch => {
     try {
         const response = await Axios.get(`https://dataservice.accuweather.com/locations/v1/search?q=${zipCode}&apikey=LtaVZV9fRcYsvz1uRBGlIFhX2hFMrqNQ`)
         const locationKey = response.data[0]['Key']
-       const secondResponse = await Axios.get(`http://dataservice.accuweather.com/forecasts/v1/daily/1day/${locationKey}?apikey=LtaVZV9fRcYsvz1uRBGlIFhX2hFMrqNQ`)
-       const cloudForecast = secondResponse.data['DailyForecasts'][0]['Night']['IconPhrase']
-       const hasPrecipiation = secondResponse.data['DailyForecasts'][0]['Night']['HasPrecipitation']
-       return dispatch(gotLocationKey(locationKey))
+       const secondResponse = await Axios.get(`http://dataservice.accuweather.com/forecasts/v1/daily/1day/${locationKey}?apikey=LtaVZV9fRcYsvz1uRBGlIFhX2hFMrqNQ&details=true`)
+       const cloudIndex = secondResponse.data['DailyForecasts'][0]['Night']['CloudCover']
+       const hasPrecipitation = secondResponse.data['DailyForecasts'][0]['Night']['HasPrecipitation']
+       const finalVis = getStargazeIndex(cloudIndex, hasPrecipitation)
+       return dispatch(addData(locationKey, finalVis))
     } catch(error) {
         console.error(error)
     }
@@ -27,8 +29,8 @@ export const fetchLocationKey = (zipCode) => async dispatch => {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case GOT_LOCATION_KEY:
-        return {...state, locationKey: action.locationKey}
+    case ADDED_DATA:
+        return {...state, locationKey: action.locationKey, finalVis: action.finalVis}
     default:
       return state
   }
