@@ -8,19 +8,28 @@ class Main extends React.Component {
     this.state = {
       zipCode: ''
     }
+    this.handleChange = this.handleChange.bind(this)
+  }
+
+  handleChange(event) {
+      this.setState({
+          zipCode: event.target.value
+      })
   }
 
   render () {
     return (
       <div id="main">
+          {console.log('local state zip', this.state.zipCode)}
+          {console.log('stored location key', this.props.locationKey)}
         <div className='container'>
           <div className="middleColumn">
             <h2>CAN I SEE STARS TONIGHT?</h2>
             <div className="formAndButton">
               <form id="form1">
-              ZIP CODE: <input type="text" name="zip"/><br></br>
+              ZIP CODE: <input type="text" name="zip" onChange={this.handleChange} /><br></br>
               </form><br/>
-              <button onClick={() => this.props.getLocationKey()} form="form1">FIND OUT</button>
+              <button onClick={() => this.props.getLocationKey(this.state.zipCode)}>FIND OUT</button>
             </div>
           </div>
         </div>
@@ -55,7 +64,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getLocationKey: () => dispatch(fetchLocationKey()),
+    getLocationKey: (zipCode) => dispatch(fetchLocationKey(zipCode)),
   }
 }
 
