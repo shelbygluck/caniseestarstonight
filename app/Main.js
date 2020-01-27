@@ -9,6 +9,7 @@ class Main extends React.Component {
       zipCode: ''
     }
     this.handleChange = this.handleChange.bind(this)
+    this.scrollToVis = this.scrollToVis.bind(this)
   }
 
   handleChange(event) {
@@ -17,12 +18,15 @@ class Main extends React.Component {
       })
   }
 
+  scrollToVis() {
+    const element = document.getElementById(`${this.props.finalVis}`);
+    element.scrollIntoView({behavior: "smooth", block: "center", inline: "center"})
+  }
+
   render () {
     return (
       <div id="main">
-          {console.log('local state zip', this.state.zipCode)}
-          {console.log('stored location key', this.props.locationKey)}
-          {console.log('stored visibility', this.props.finalVis)}
+         {this.props.finalVis != '' ? this.scrollToVis() : console.log('empty')}
         <div className='container'>
           <div className="middleColumn">
             <h2>CAN I SEE STARS TONIGHT?</h2>
@@ -37,19 +41,19 @@ class Main extends React.Component {
         <div className='container2'>
         </div>
         <div className='container'>
-          <h4 id="noVisAnchor">NO VISIBILITY</h4>
+          <h4 id="no">NO VISIBILITY</h4>
         </div>
         <div className='container2'>
-          <h4 id="lowVisAnchor">LOW VISIBILITY</h4>
+          <h4 id="low">LOW VISIBILITY</h4>
         </div>
         <div className='container'>
-          <h4 id="medVisAnchor">MEDIUM VISIBILITY</h4>
+          <h4 id="medium">MEDIUM VISIBILITY</h4>
         </div>
         <div className='container2'>
-          <h4 id="highVisAnchor">HIGH VISIBILITY</h4>
+          <h4 id="high">HIGH VISIBILITY</h4>
         </div>
         <div className='container'>
-          <h4 id="superVisAnchor">SUPER VISIBILITY</h4>
+          <h4 id="super">SUPER VISIBILITY</h4>
         </div>
       </div>
     )
