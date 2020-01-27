@@ -10,13 +10,14 @@ const initialState = {
   locationKey: '',
 }
 
-export const getLocationKey = () => async dispatch => {
+export const fetchLocationKey = () => async dispatch => {
     try {
-        const data = await Axios.get('https://dataservice.accuweather.com/locations/v1/search?q=10004&apikey=LtaVZV9fRcYsvz1uRBGlIFhX2hFMrqNQ')
-        const locationKey = data[0]['Key']
-        return dispatch(gotLocationKey(locationKey))
+        const response = await Axios.get('https://dataservice.accuweather.com/locations/v1/search?q=10004&apikey=LtaVZV9fRcYsvz1uRBGlIFhX2hFMrqNQ')
+        // const locationKey = response.data[0]['Key']
+        console.log(response, response.data, response.data[0], response.data[0]['Key'])
+        // return dispatch(gotLocationKey(locationKey))
     } catch(error) {
-        console.error(error)
+        console.error('error', error)
     }
 }
 

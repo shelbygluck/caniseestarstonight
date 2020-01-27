@@ -1,5 +1,5 @@
 import React from 'react'
-import {getLocationKey} from './store'
+import {fetchLocationKey} from './store'
 import {connect} from 'react-redux'
 
 class Main extends React.Component {
@@ -55,7 +55,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getLocationKey: () => dispatch(getLocationKey()),
+    getLocationKey: () => dispatch(fetchLocationKey()),
   }
 }
 
