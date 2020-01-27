@@ -10,21 +10,13 @@ const getMoonPhase = (year, month, day) => {
     }
 
     month++
-
     daysFromYears = 365.25 * year
-
     daysFromMonths = 30.6 * month
-
     totalDaysElapsed = daysFromYears + daysFromMonths + day - 694039.09 //find total days elapsed from set new moon
-
     totalDaysElapsed  /= 29.5305882 //divide by the moon cycle
-
     howFarIntoPhase = parseInt(totalDaysElapsed); //fractional part is how far date is into current lunar phase
-
     totalDaysElapsed -= howFarIntoPhase;
-
     howFarIntoPhase = Math.round(totalDaysElapsed * 8); //scale fraction from 0-8 and round
-
     if (howFarIntoPhase >= 8 ) {
         howFarIntoPhase = 0; //0 and 8 are the same
     }

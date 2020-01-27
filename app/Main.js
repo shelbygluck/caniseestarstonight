@@ -20,8 +20,7 @@ class Main extends React.Component {
 
   scrollToVis() {
     // const lineBreak = document.createElement("br")
-    // const description = document.createTextNode('description example')
-    console.log(this.props)
+    // const description = document.createTextNode(`The forecast for stargazing visibility tonight in your area is ${this.props.finalVis.keyword}, due to ${this.props.finalVis.cloudClip}, ${this.props.finalVis.moonClip}, and ${this.props.finalVis.precipClip}`)
     const visSection = document.getElementById(`${this.props.finalVis.keyword}`);
     // visSection.appendChild(lineBreak)
     // visSection.appendChild(description)
