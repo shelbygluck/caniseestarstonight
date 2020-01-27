@@ -10,5 +10,5 @@
 - [ ] npm install
 - [ ] npm run start
 
-  or visit caniseestarstonight.com
+  or visit caniseestarstonight.herokuapp.com
 ```
