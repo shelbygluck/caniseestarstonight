@@ -8,9 +8,10 @@
   "engines": {
     "node": "10.16.3",
     "npm": "6.13.2"
-    },
+  },
   "scripts": {
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server",
+    "build": "webpack"
   },
   "dependencies": {
     "axios": "^0.19.2",
@@ -22,6 +23,7 @@
     "babel-preset-es2016": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
+    "express": "^4.17.1",
     "lune": "^0.4.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
@@ -32,7 +34,7 @@
     "redux-thunk": "^2.3.0",
     "regenerator-runtime": "^0.13.3",
     "webpack": "^4.41.5",
-    "webpack-cli": "^3.3.7",
+    "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.8.0"
   }
 }
