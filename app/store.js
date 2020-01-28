@@ -15,9 +15,9 @@ const initialState = {
 
 export const fetchLocationKey = (zipCode) => async dispatch => {
     try {
-       const response = await Axios.get(`https://dataservice.accuweather.com/locations/v1/search?q=${zipCode}&apikey=LtaVZV9fRcYsvz1uRBGlIFhX2hFMrqNQ`)
+       const response = await Axios.get(`https://dataservice.accuweather.com/locations/v1/search?q=${zipCode}&apikey=ATtTSfqDwl8ydkGnpcFsXQ0jgevBeZDu`)
        const locationKey = response.data[0]['Key']
-       const secondResponse = await Axios.get(`http://dataservice.accuweather.com/forecasts/v1/daily/1day/${locationKey}?apikey=LtaVZV9fRcYsvz1uRBGlIFhX2hFMrqNQ&details=true`)
+       const secondResponse = await Axios.get(`http://dataservice.accuweather.com/forecasts/v1/daily/1day/${locationKey}?apikey=ATtTSfqDwl8ydkGnpcFsXQ0jgevBeZDu&details=true`)
        const cloudIndex = secondResponse.data['DailyForecasts'][0]['Night']['CloudCover']
        const hasPrecipitation = secondResponse.data['DailyForecasts'][0]['Night']['HasPrecipitation']
        console.log(cloudIndex)
