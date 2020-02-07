@@ -10,5 +10,4 @@
 - [ ] npm install
 - [ ] npm run start
 
-  or visit caniseestarstonight.herokuapp.com
 ```
